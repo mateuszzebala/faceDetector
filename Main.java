@@ -11,24 +11,24 @@ public class Main {
         String file ="path_to_image";
         Mat src = Imgcodecs.imread(file);
         String xmlFile = "classifier.xml";
-        CascadeClassifier classifier = new CascadeClassifier(xmlFile); // create instance of cascade classifier
+        CascadeClassifier classifier = new CascadeClassifier(xmlFile);
 
-        MatOfRect faceDetections = new MatOfRect(); // create box for faces
-        classifier.detectMultiScale(src, faceDetections); // detect faces and paste it into faceDetection
+        MatOfRect faceDetections = new MatOfRect();
+        classifier.detectMultiScale(src, faceDetections);
 
-        System.out.printf("Detected %s faces", faceDetections.toArray().length); // print face count
+        System.out.printf("Detected %s faces", faceDetections.toArray().length);
 
-        for (Rect rect : faceDetections.toArray()) { // loop over faces and draw rectangle on image
+        for (Rect rect : faceDetections.toArray()) {
             Imgproc.rectangle(
-                src, // where to draw the box
-                new Point(rect.x, rect.y), // bottom left position
-                new Point(rect.x + rect.width, rect.y + rect.height), // top right position
-                new Scalar(0, 0, 255), // RGB
-                3 // thickness
+                src,
+                new Point(rect.x, rect.y),
+                new Point(rect.x + rect.width, rect.y + rect.height),
+                new Scalar(0, 0, 255),
+                3
             );
         }
 
-        Imgcodecs.imwrite("path_to_new_image", src); // save new image
+        Imgcodecs.imwrite("path_to_new_image", src);
 
     }
 }
