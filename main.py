@@ -4,7 +4,7 @@ face_cascade = cv2.CascadeClassifier('classifier.xml')
 
 img = cv2.imread('path_to_file')
 
-faces = face_cascade.detectMultiScale(img, 1.1, 4)
+faces = face_cascade.detectMultiScale(img)
 
 for (x, y, w, h) in faces:
     cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
