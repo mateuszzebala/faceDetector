@@ -5,17 +5,13 @@ import org.opencv.objdetect.CascadeClassifier;
 
 public class Main {
     public static void main(String[] args) {
-
+        
         System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
-
-        String file ="path_to_image";
-        Mat src = Imgcodecs.imread(file);
-        String xmlFile = "classifier.xml";
-        CascadeClassifier classifier = new CascadeClassifier(xmlFile);
+        Mat src = Imgcodecs.imread("path_to_image");
+        CascadeClassifier classifier = new CascadeClassifier("classifier.xml");
 
         MatOfRect faceDetections = new MatOfRect();
         classifier.detectMultiScale(src, faceDetections);
-
         System.out.printf("Detected %s faces", faceDetections.toArray().length);
 
         for (Rect rect : faceDetections.toArray()) {
@@ -27,8 +23,7 @@ public class Main {
                 3
             );
         }
-
+        
         Imgcodecs.imwrite("path_to_new_image", src);
-
     }
 }
